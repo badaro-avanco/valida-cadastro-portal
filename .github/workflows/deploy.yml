@@ -1,0 +1,33 @@
+name: Deploy no Dokploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-dokploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Disparar deploy do compose
+        env:
+          DOKPLOY_URL: ${{ secrets.DOKPLOY_URL }}
+          DOKPLOY_API_KEY: ${{ secrets.DOKPLOY_API_KEY }}
+          DOKPLOY_COMPOSE_ID: ${{ secrets.DOKPLOY_COMPOSE_ID }}
+        run: |
+          if [ -z "$DOKPLOY_URL" ] || [ -z "$DOKPLOY_API_KEY" ] || [ -z "$DOKPLOY_COMPOSE_ID" ]; then
+            echo "::warning::Segredos do Dokploy nao configurados no repositorio. Deploy ignorado."
+            exit 0
+          fi
+          status=$(curl -sS -o resposta.json -w "%{http_code}" -X POST \
+            "$DOKPLOY_URL/api/compose.deploy" \
+            -H "x-api-key: $DOKPLOY_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{\"composeId\":\"$DOKPLOY_COMPOSE_ID\"}")
+          echo "HTTP $status"
+          cat resposta.json
+          test "$status" -ge 200 && test "$status" -lt 300

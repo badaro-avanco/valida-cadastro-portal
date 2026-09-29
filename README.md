@@ -34,3 +34,11 @@ Exemplo de relatório: `SELECT resultado, count(*) FROM consultas GROUP BY 1;`
 - As planilhas e o CSV têm dados de clientes e estão no `.gitignore`. Não os suba para o Git; carregue-os direto no banco de produção.
 - Trocar a senha do banco (variável `DB_PASSWORD`).
 - Atrás de proxy/HTTPS, configurar `ForwardedHeaders` para o limite por IP enxergar o IP real.
+
+## Deploy (Dokploy)
+
+- `docker-compose.prod.yml`: versão de produção (sem portas publicadas, roteada pelo Traefik do Dokploy).
+- `.github/workflows/deploy.yml`: a cada push na `main`, chama `compose.deploy` na API do Dokploy.
+- Segredos do repositório (Settings, Secrets and variables, Actions): `DOKPLOY_URL`, `DOKPLOY_API_KEY`, `DOKPLOY_COMPOSE_ID`.
+- A base de cadastros não vai no Git: ela fica como volume de arquivo (`seed/cadastros.csv`) dentro do próprio serviço no Dokploy, e a variável `DB_PASSWORD` também fica só lá.
+- O banco só é carregado na primeira subida (volume vazio). Para recarregar os dados, apague o volume `pgdata` do serviço e faça um novo deploy.

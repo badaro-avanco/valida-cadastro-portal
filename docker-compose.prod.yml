@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: valida_cadastro
+      POSTGRES_USER: valida
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?defina DB_PASSWORD nas variaveis do Dokploy}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+      - ../files/seed:/seed:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U valida -d valida_cadastro"]
+      interval: 5s
+      retries: 20
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__Postgres: Host=db;Port=5432;Database=valida_cadastro;Username=valida;Password=${DB_PASSWORD}
+    expose:
+      - "8080"
+    networks:
+      - default
+      - dokploy-network
+
+volumes:
+  pgdata:
+
+networks:
+  dokploy-network:
+    external: true
