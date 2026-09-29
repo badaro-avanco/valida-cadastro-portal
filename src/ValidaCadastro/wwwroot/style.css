@@ -1,0 +1,262 @@
+/* AID Design System (Avanço Style Guide). Tokens de cor, tipografia, forma, espaçamento e elevação. */
+:root {
+  /* Destaques */
+  --primaria: #0005AA;
+  --sobre-primaria: #FFFFFF;
+  --conteiner-primario: #E0E0FF;
+  --sobre-conteiner-primario: #00026C;
+  --secundaria: #5C5D72;
+  --conteiner-secundario: #E1E0F9;
+  --sobre-conteiner-secundario: #191A2C;
+  --terciaria: #566500;
+  --conteiner-terciario: #D7EE69;
+  --sobre-conteiner-terciario: #181E00;
+  /* Erro: o guia não define valores, usamos o tom padrão da mesma família de esquema */
+  --erro: #BA1A1A;
+  --conteiner-erro: #FFDAD6;
+  --sobre-conteiner-erro: #410002;
+
+  /* Superfícies */
+  --superficie: #FCF8FD;
+  --sup-mais-baixo: #FFFFFF;
+  --sup-baixo: #F6F2F7;
+  --sup-conteiner: #F0EDF1;
+  --sobre-superficie: #1B1B1F;
+  --sobre-superficie-variante: #46464F;
+  --contorno: #777680;
+  --contorno-variante: #C7C5D0;
+
+  /* Formas */
+  --forma-xs: 4px;
+  --forma-p: 8px;
+  --forma-m: 12px;
+  --forma-g: 16px;
+  --forma-xg: 28px;
+  --forma-cheia: 999px;
+
+  /* Espaçamento */
+  --e1: 4px;
+  --e2: 8px;
+  --e3: 12px;
+  --e4: 16px;
+  --e6: 24px;
+  --e8: 32px;
+
+  /* Elevações */
+  --elev1: 0 1px 2px 0 rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.15);
+  --elev2: 0 1px 2px 0 rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.15);
+  --elev3: 0 1px 3px 0 rgba(0,0,0,.30), 0 4px 8px 3px rgba(0,0,0,.15);
+
+  --fonte-titulo: "Titillium Web", "Segoe UI", sans-serif;
+  --fonte-corpo: "Open Sans", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--e8) var(--e4) var(--e4);
+  font-family: var(--fonte-corpo);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--sobre-superficie);
+  background: var(--superficie);
+}
+
+/* Ícones Material (Outlined), 24px, centralizados com o texto */
+.icon {
+  font-family: "Material Icons Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.cartao {
+  width: 100%;
+  max-width: 600px;
+  background: var(--sup-mais-baixo);
+  border-radius: var(--forma-m);
+  padding: var(--e8) var(--e6);
+  box-shadow: var(--elev1);
+}
+
+.logo { display: block; width: 220px; max-width: 70%; height: auto; margin: 0 auto var(--e6); }
+
+/* Manchete Média / Corpo Grande */
+h1 {
+  margin: 0 0 var(--e2);
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.52;
+  color: var(--primaria);
+}
+.apoio { margin: 0 0 var(--e6); color: var(--sobre-superficie-variante); }
+
+.campo { margin-bottom: var(--e4); }
+
+/* Etiqueta Grande */
+label {
+  display: block;
+  margin-bottom: var(--e2);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sobre-superficie);
+}
+
+.entrada { position: relative; }
+.entrada .icon {
+  position: absolute;
+  left: var(--e4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sobre-superficie-variante);
+  pointer-events: none;
+}
+input {
+  width: 100%;
+  height: 56px;
+  padding: 0 var(--e4) 0 52px;
+  font-family: var(--fonte-corpo);
+  font-size: 16px;
+  color: var(--sobre-superficie);
+  background: var(--sup-mais-baixo);
+  border: 1px solid var(--contorno);
+  border-radius: var(--forma-xs);
+  transition: border-color .15s, box-shadow .15s;
+}
+input::placeholder { color: var(--contorno); }
+input:hover { border-color: var(--sobre-superficie); }
+input:focus { outline: none; border: 2px solid var(--primaria); padding-left: 51px; }
+input.invalido { border: 2px solid var(--erro); padding-left: 51px; }
+
+/* Etiqueta Média */
+small { display: block; margin: var(--e1) var(--e4) 0; font-size: 12px; }
+.dica { color: var(--sobre-superficie-variante); }
+.erro { color: var(--erro); font-weight: 600; }
+.erro:empty { display: none; }
+
+/* Botões: forma cheia, Etiqueta Grande, área de toque de 48px */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e2);
+  min-height: 48px;
+  padding: 0 var(--e6);
+  font-family: var(--fonte-corpo);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .1px;
+  border: 0;
+  border-radius: var(--forma-cheia);
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow .15s, background .15s;
+}
+.botao:focus-visible { outline: 3px solid var(--primaria); outline-offset: 2px; }
+.primario { width: 100%; background: var(--primaria); color: var(--sobre-primaria); }
+.primario:hover { box-shadow: var(--elev1); background: #1a1fb8; }
+.primario:disabled { background: var(--contorno-variante); color: var(--sobre-superficie-variante); box-shadow: none; cursor: wait; }
+.secundario { background: var(--conteiner-secundario); color: var(--sobre-conteiner-secundario); }
+.secundario:hover { box-shadow: var(--elev1); }
+
+.carregando {
+  display: none;
+  width: 18px; height: 18px;
+  border: 3px solid rgba(70, 70, 79, .3);
+  border-top-color: var(--sobre-superficie-variante);
+  border-radius: 50%;
+  animation: gira .7s linear infinite;
+}
+button.ocupado .carregando { display: inline-block; }
+button.ocupado .icon { display: none; }
+@keyframes gira { to { transform: rotate(360deg); } }
+
+/* Resultado: card com forma média e elevação 2 */
+.resultado {
+  margin-top: var(--e6);
+  padding: var(--e6);
+  border-radius: var(--forma-m);
+  box-shadow: var(--elev2);
+  animation: entra .25s ease-out;
+  outline: none;
+}
+@keyframes entra { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.resultado.sucesso { background: var(--conteiner-terciario); color: var(--sobre-conteiner-terciario); }
+.resultado.atencao { background: var(--conteiner-primario); color: var(--sobre-conteiner-primario); }
+.resultado.erro-caixa { background: var(--conteiner-erro); color: var(--sobre-conteiner-erro); }
+
+.cabecalho-resultado { display: flex; align-items: center; gap: var(--e3); margin-bottom: var(--e3); }
+.cabecalho-resultado .icon { font-size: 36px; }
+.sucesso .cabecalho-resultado .icon { color: var(--terciaria); }
+.atencao .cabecalho-resultado .icon { color: var(--primaria); }
+.erro-caixa .cabecalho-resultado .icon { color: var(--erro); }
+
+/* Título Grande */
+.resultado h2 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.3;
+}
+.resultado p { margin: 0 0 var(--e3); }
+.resultado ol { margin: 0 0 var(--e4); padding-left: var(--e6); }
+.resultado li { margin-bottom: var(--e2); }
+.resultado a { color: inherit; font-weight: 700; text-decoration: underline; }
+.resultado a.botao { color: var(--sobre-primaria); text-decoration: none; }
+
+.acoes { display: flex; flex-wrap: wrap; gap: var(--e3); margin-top: var(--e4); }
+.acoes .botao { flex: 1 1 200px; width: auto; }
+
+/* Lista de contatos: itens em superfície, cantos vivos como o guia define para listas */
+.contatos { list-style: none; padding: 0; margin: 0 0 var(--e4); background: var(--sup-mais-baixo); border-radius: 0; color: var(--sobre-superficie); }
+.contatos li {
+  display: flex;
+  align-items: center;
+  gap: var(--e4);
+  margin: 0;
+  padding: var(--e3) var(--e4);
+  min-height: 56px;
+  border-bottom: 1px solid var(--contorno-variante);
+}
+.contatos li:last-child { border-bottom: 0; }
+.avatar {
+  flex: none;
+  width: 40px; height: 40px;
+  border-radius: var(--forma-cheia);
+  background: var(--primaria);
+  color: var(--sobre-primaria);
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+}
+/* Título Médio / Corpo Médio */
+.contatos .nome { font-family: var(--fonte-titulo); font-weight: 600; font-size: 16px; }
+.contatos .mail { color: var(--sobre-superficie-variante); font-size: 14px; word-break: break-all; }
+
+.rodape { margin-top: var(--e6); color: var(--sobre-superficie-variante); font-size: 12px; }
+
+/* Manchete Pequena em telas menores que 600dp */
+@media (max-width: 600px) {
+  .cartao { padding: var(--e6) var(--e4); }
+  h1 { font-size: 24px; line-height: 1.52; }
+  .resultado { padding: var(--e4); }
+}

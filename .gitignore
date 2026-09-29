@@ -1,0 +1,6 @@
+# Dados reais de clientes (e-mails e telefones): nunca versionar
+*.xlsx
+db/seed/*.csv
+.env
+bin/
+obj/

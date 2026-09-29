@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consulta de Cadastro | Avanço</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Titillium+Web:wght@400;600;700&family=Material+Icons+Outlined&display=swap">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="cartao">
+    <header>
+      <img class="logo" src="logo.png" alt="Avanço Informática" width="289" height="92">
+      <h1>Verifique seu acesso ao Portal do Cliente</h1>
+      <p class="apoio">Informe seu e-mail e o CNPJ da sua empresa. Em poucos segundos mostramos como você deve proceder.</p>
+    </header>
+
+    <form id="form" novalidate>
+      <div class="campo">
+        <label for="email">Seu e-mail</label>
+        <div class="entrada">
+          <span class="icon" aria-hidden="true">mail</span>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email"
+                 placeholder="nome@suaempresa.com.br" maxlength="254" required>
+        </div>
+        <small class="dica">Digite o e-mail que você usa no trabalho.</small>
+        <small class="erro" id="erro-email" role="alert"></small>
+      </div>
+
+      <div class="campo">
+        <label for="cnpj">CNPJ da sua empresa</label>
+        <div class="entrada">
+          <span class="icon" aria-hidden="true">apartment</span>
+          <input id="cnpj" name="cnpj" type="text" inputmode="numeric" autocomplete="off"
+                 placeholder="00.000.000/0000-00" maxlength="18" required>
+        </div>
+        <small class="dica">Pode digitar apenas os números. Nós formatamos para você.</small>
+        <small class="erro" id="erro-cnpj" role="alert"></small>
+      </div>
+
+      <button id="enviar" type="submit" class="botao primario">
+        <span class="icon" aria-hidden="true">search</span>
+        <span class="rotulo">Verificar meu cadastro</span>
+        <span class="carregando" aria-hidden="true"></span>
+      </button>
+    </form>
+
+    <section id="resultado" class="resultado" hidden aria-live="polite" tabindex="-1"></section>
+  </main>
+
+  <footer class="rodape">Avanço Informática</footer>
+  <script src="app.js"></script>
+</body>
+</html>
